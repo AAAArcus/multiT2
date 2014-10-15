@@ -59,6 +59,13 @@ for k=1:iter
     a=[1; ab(1:m)];
     rootsA=roots(a);
     indic=abs(rootsA)>=1;
+    if any(indic) %Mirror
+        rootsA(indic)=1./rootsA(indic);
+        a=poly(rootsA);
+    elseif norm(ab-ab_old)/norm(ab_old)<1e-8
+        break;
+    end
+    ab_old=ab;
 end
 
 b=ab(m+1:end);
