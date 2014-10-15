@@ -46,8 +46,7 @@ end
 end
 
 function [b,a]=stmcbFlex(y,u,m,iter);
-%A more flexible implementation of Stieglitz-McBride, compared to the MATLAB built-in stmcb() function,
-%that does not assume unit impulse input.
+%Random
 
 %Initial A estimate
 a=1;
