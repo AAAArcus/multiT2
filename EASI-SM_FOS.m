@@ -6,7 +6,7 @@ function [lambdaEst, cEst, resNorm]=EASI-SM_FOS(y,t,m,maxIter)
 %maxIter is the maximum number of iterations in SM, which is effective 
 %only in the case of slow convergence.
 %
-%Marcus Björk, 2014
+%Marcus Bjork, 2014
 
 N=length(y);
 finished=false;
