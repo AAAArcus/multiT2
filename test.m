@@ -51,6 +51,10 @@ function [b,a]=stmcbFlex(y,u,m,iter)
 %Initial A estimate
 a=1;
 ab_old=zeros(2*m,1);
+for k=1:iter
+    yf=filter(1,a,y);
+    uf=filter(1,a,u);
+end
 
 b=ab(m+1:end);
 end
