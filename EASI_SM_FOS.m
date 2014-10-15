@@ -46,8 +46,6 @@ end
 end
 
 function [b,a]=stmcbFlex(y,u,m,iter)
-%More flexible implementation of Stieglitz-McBride that does not assume unit impulse input.
-%Provides more direct control and can be used for colored noise, for example.
 
 %Initial A estimate
 a=1;
