@@ -46,7 +46,7 @@ end
 end
 
 function [b,a]=stmcbFlex(y,u,m,iter);
-%Random
+%A more flexible implementation of Sieglitz-McBride compared to the MATLAB function stmcb().
 
 %Initial A estimate
 a=1;
