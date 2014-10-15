@@ -46,7 +46,6 @@ end
 end
 
 function [b,a]=stmcbFlex(y,u,m,iter)
-%More flexible implementation of Stieglitz-McBride that does not assume unit impulse input.
 
 %Initial A estimate
 a=1;
