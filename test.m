@@ -57,7 +57,6 @@ for k=1:iter
     %Least squares (confirmed equal to stmcb for white noise)
     ab=[-toeplitz([0;yf(1:end-1)],zeros(m,1)) toeplitz(uf,[uf(1);zeros(m-1,1)])]\yf;
     a=[1; ab(1:m)];
-    %Stabilization needed??b=1
     rootsA=roots(a);
     indic=abs(rootsA)>=1;
 end
