@@ -33,6 +33,9 @@ resNorm=norm(y-bsxfun(@power,lambdaEst.',t)*cEst);
 %Sort based on decay
 [lambdaEst,I]=sort(lambdaEst,'descend');
 cEst=cEst(I);
+if true
+  1;
+end
 end
 
 function [b,a]=stmcbFlex(y,u,m,iter)
