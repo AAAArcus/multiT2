@@ -45,10 +45,8 @@ ab_old=zeros(2*m,1);
 for k=1:iter
     yf=filter(1,a,y);
     uf=filter(1,a,u);
-   
     
     %Least squares (confirmed equal to stmcb for white noise)
-    %ab=[-toeplitz([zeros(m-1,1);yf(1:end-1)],zeros(m,1)) toeplitz([uf(1:end-1); zeros(m-1,1)],[uf(1);zeros(m-1,1)])]\yf;
     ab=[-toeplitz([0;yf(1:end-1)],zeros(m,1)) toeplitz(uf,[uf(1);zeros(m-1,1)])]\yf;
     a=[1; ab(1:m)];
     %Stabilization needed??
