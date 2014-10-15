@@ -8,11 +8,11 @@ function [lambdaEst, cEst, resNorm]=EASI_SM_FOS(y,t,m,maxIter)
 %
 %Marcus Bjork, 2014
 
+m_max=m;
 N=length(y);
 finished=false;
-m_max=m;
-while ~finished
 
+while ~finished
   [b,a]=stmcbFlex(y,[1;zeros(N-1,1)],m,maxIter);
   [cEst,lambdaEst] = residue(b,a);
 
@@ -22,7 +22,7 @@ while ~finished
   else
       %Compute vandermonde matrix
       vMonde=bsxfun(@power,lambdaEst.',t);
-      if cond(vMonde)<1e3  %Only solutions with OK conditioning are passed
+      if cond(vMonde)<1e3  %Only solutions with OK conditioning are passed (can be omitted)
           if any(cEst<=0) && m>1 %If any cEst is negative or zero, also reduce order
               m=m-1;
           else
