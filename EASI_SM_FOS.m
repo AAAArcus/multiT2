@@ -45,7 +45,7 @@ if m<m_max
 end
 end
 
-function [b,a]=stmcbFlex(y,u,m,iter)
+function [b,a]=stmcbFlex(y,u,m,iter) %random
 
 %Initial A estimate
 a=1;
