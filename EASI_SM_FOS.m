@@ -6,32 +6,29 @@ function [lambdaEst, cEst, resNorm]=EASI_SM_FOS(y,t,m,maxIter)
 %maxIter is the maximum number of iterations in SM, which is effective 
 %only in the case of slow convergence.
 %
-%Marcus Bjork, 2014
+%Marcus Björk, 2014
 
 m_max=m;
-N=length(y);
-finished=false;
-
 while ~finished
-  [b,a]=stmcbFlex(y,[1;zeros(N-1,1)],m,maxIter);
-  [cEst,lambdaEst] = residue(b,a);
+    [b,a]=stmcbFlex(y,[1;zeros(N-1,1)],m,maxIter);
+    [cEst,lambdaEst] = residue(b,a);
 
-  %Feasibility-based order selection (FOS)
-  if any(lambdaEst<0 | lambdaEst>1 | ~isreal(lambdaEst)) 
-      m=m-1;
-  else
-      %Compute vandermonde matrix
-      vMonde=bsxfun(@power,lambdaEst.',t);
-      if cond(vMonde)<1e3  %Only solutions with OK conditioning are passed (can be omitted)
-          if any(cEst<=0) && m>1 %If any cEst is negative or zero, also reduce order
-              m=m-1;
-          else
-              finished=true;
-          end
-      else %If poor conditioning, reduce order (will never happen for r=1 since it is perfectly conditioned)
-          m=m-1;
-      end
-  end
+    %Feasibility-based order selection
+    if any(lambdaEst<0 | lambdaEst>1 | ~isreal(lambdaEst)) 
+        m=m-1;
+    else
+        %Compute vandermonde matrix
+        vMonde=bsxfun(@power,lambdaEst.',t);
+        if cond(vMonde)<1e3  %Only solutions with OK conditioning are passed
+            if any(cEst<=0) && m>1 %If any cEst is negative or zero, also reduce order
+                m=m-1;
+            else
+                finished=true;
+            end
+        else %If poor conditioning, reduce order (will never happen for r=1 since it is perfectly conditioned)
+            m=m-1;
+        end
+    end
 end
 
 %Sort based on decay
@@ -49,8 +46,7 @@ end
 end
 
 function [b,a]=stmcbFlex(y,u,m,iter)
-%A more flexible implementation of Stieglitz-McBride, compared to the MATLAB built-in stmcb() function,
-%that does not assume unit impulse input.
+%Lala
 
 %Initial A estimate
 a=1;
@@ -58,7 +54,6 @@ ab_old=zeros(2*m,1);
 for k=1:iter
     yf=filter(1,a,y);
     uf=filter(1,a,u);
-   
     %Least squares (confirmed equal to stmcb for white noise)
     ab=[-toeplitz([0;yf(1:end-1)],zeros(m,1)) toeplitz(uf,[uf(1);zeros(m-1,1)])]\yf;
     a=[1; ab(1:m)];
@@ -74,5 +69,5 @@ for k=1:iter
 end
 
 b=ab(m+1:end);
-
 end
+
