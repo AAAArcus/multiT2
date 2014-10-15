@@ -1,5 +1,5 @@
 function [lambdaEst, cEst, resNorm]=EASI_SM_FOS(y,t,m,maxIter)
-%[lambdaEst, cEst, resNorm]=EASI-SM(y,t,m,maxIter)
+%[lambdaEst, cEst, resNorm]=EASI_SM_FOS(y,t,m,maxIter)
 %Estimate exponential parameters using Steiglitz-McBride (SM).
 %y is the data, t is the time vector, and m is the number of components.
 %Model: s(n)=sum_k(c_k*lambda_k^n)+e(n), lambda_k=exp(-dt/T_2k), t=n*dt.
