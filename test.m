@@ -43,5 +43,12 @@ if m<m_max
     lambdaEst=[lambdaEst;zeros(m_max-m,1)];
     cEst=[cEst;zeros(m_max-m,1)];
 end
+end
 
+function [b,a]=stmcbFlex(y,u,m,iter)
+%Lala
+
+%Compute something
+b=1;
+a=1;
 end
