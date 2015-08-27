@@ -1,4 +1,4 @@
-function [lambdaEst, cEst, resNorm]=EASI_SM_FOS(y,t,m,maxIter)
+function [lambdaEst, cEst, resNorm]=EASI_SM_BIC(y,t,m,maxIter)
 %[lambdaEst, cEst, resNorm]=EASI_SM_BIC(y,t,m,maxIter)
 %Estimate exponential parameters using Steiglitz-McBride (SM).
 %y is the data, t is the time vector, and m is the maximum number of components.
