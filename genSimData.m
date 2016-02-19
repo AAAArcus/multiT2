@@ -1,4 +1,4 @@
-%Marcus Björk & Dave Zachariah 2015
+%Marcus BjÃ¶rk & Dave Zachariah 2015
 %Generate multi-exponential data, both Rice and Gaussian distributed.
 clear
 
@@ -38,11 +38,8 @@ sigma2 = (mean(x_true)./SNR).^2;
 y_Rice=abs(x_true + sqrt(sigma2)*(randn(N,1)+1i*randn(N,1)));
 y_Gauss=x_true + sqrt(sigma2)*randn(N,1);
 
-%Save data in mat-file (indicating SNR, number of samples, and number of exponentials)
-save(['data_SNR' num2str(SNR) '_N' num2str(N) '_M' num2str(m_true)])
+%Compute estimates of lambda and c from the Gaussian data
+[lambdaEst, cEst]=EASI_SM_FOS(y_Gauss,t,5,100);
 
-figure
-plot(t,y_Rice,t,y_Gauss)
-legend('Rice','Gauss')
-xlabel('Time [ms]')
-ylabel('Amplitude')
+%Compute relaxation times corresponding to the obtained lambdas
+T2Est=-dt./log(lambdaEst);
