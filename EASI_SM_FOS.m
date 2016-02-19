@@ -7,7 +7,8 @@ function [lambdaEst, cEst, resNorm]=EASI_SM_FOS(y,t,m,maxIter)
 %only in the case of slow convergence.
 %
 %Marcus Björk, 2014
-
+finished=false;
+N=length(y);
 m_max=m;
 while ~finished
     [b,a]=stmcbFlex(y,[1;zeros(N-1,1)],m,maxIter);
